@@ -1,0 +1,21 @@
+{
+  "name": "task-14-api",
+  "version": "1.0.0",
+  "description": "Simple Express API with Jest tests",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest --runInBand"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "express": "^5.2.1",
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  }
+}
