@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: student-service
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/students/**
+    discovery:
+      client:
+        simple:
+          instances:
+            STUDENT-SERVICE:
+              - uri: http://localhost:8081
+              - uri: http://localhost:8082
