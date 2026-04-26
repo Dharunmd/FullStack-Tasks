@@ -1,0 +1,46 @@
+name: Task 21 CI/CD Pipeline
+
+on:
+ push:
+   branches: [ "main" ]
+   paths:
+     - 'task-21/**'
+ pull_request:
+   branches: [ "main" ]
+   paths:
+     - 'task-21/**'
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   defaults:
+     run:
+       working-directory: ./task-21
+
+   steps:
+   - name: Checkout Source Code
+     uses: actions/checkout@v3
+
+   - name: Set up JDK 17
+     uses: actions/setup-java@v3
+     with:
+       distribution: 'temurin'
+       java-version: '17'
+
+   - name: Build with Maven
+     run: chmod +x mvnw && ./mvnw clean install
+
+   - name: Run Unit Tests
+     run: ./mvnw test
+
+   - name: Package Application
+     run: ./mvnw package
+
+   - name: Upload Artifact
+     uses: actions/upload-artifact@v3
+     with:
+       name: task-21-spring-boot-app
+       path: task-21/target/*.jar
+
+   - name: Deploy (Simulated)
+     run: echo "Task 21 Application Deployed Successfully!"
